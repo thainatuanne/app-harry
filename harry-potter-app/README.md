@@ -1,54 +1,69 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🧙‍♂️ Personagens de Harry Potter
 
-Currently, two official plugins are available:
+Aplicação construída como atividade prática para consumir uma **API pública** de personagens da franquia Harry Potter, utilizando **React**, **Redux Toolkit** com `createAsyncThunk` e **Material UI (MUI)** para estilização dos componentes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📌 Requisitos da atividade
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+A aplicação deve:
+- ✅ Consumir a [API pública do Harry Potter](https://hp-api.onrender.com/api/characters)
+- ✅ Exibir **foto do personagem**
+- ✅ Indicar se é **bruxo** (Sim/Não em português)
+- ✅ Mostrar a **casa** ou “Não Possui” caso não exista
+- ✅ Utilizar **Redux Toolkit com AsyncThunk** para buscar os dados
+- ✅ Usar **Material UI (MUI)** para montar os cards
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🧰 Tecnologias utilizadas
+
+- React
+- Redux Toolkit
+- createAsyncThunk
+- Material UI
+- TypeScript
+- Vite
+
+---
+
+## ⚙️ Instalação e execução
+
+```bash
+# Clone o repositório
+git clone https://github.com/thainatuanne/app-harry.git
+cd nome-do-projeto
+
+# Instale as dependências
+npm install
+
+# Inicie o projeto
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🗂️ Estrutura do projeto
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
 ```
+src/
+├── app/               # Configuração da store e hooks tipados
+├── features/
+│   └── characters/    # Slice, Card, Tipos
+├── pages/             # Página de listagem dos personagens
+├── public/            # Imagem de fallback (sem-imagem.jpg)
+```
+
+---
+
+## 🔄 Como funciona
+
+- A `store` do Redux é configurada para usar um slice `characters`.
+- Usamos `createAsyncThunk` para fazer a requisição assíncrona à API.
+- Os dados retornados são armazenados no estado global.
+- O componente `CharacterList` consome os dados da store e renderiza os cards.
+- Cada `CharacterCard` mostra as informações do personagem com MUI.
+- Se a imagem estiver ausente ou vazia, é utilizada uma imagem local (`/sem-imagem.jpg`).
+
+---
